@@ -42,34 +42,48 @@ const LeafletMap: FC<LeafletMapProps> = ({ isFullPageMap, className }) => {
                 {flights.map((it) => (
                     <Marker key={it.id} icon={AircraftIcon(it.heading, it.id)} position={[it.location.y, it.location.x]}>
                         <Popup>
-                            <div className="bg-secondary p-4 text-white">
-                                <span className="flex items-center justify-between gap-x-4">
-                                    <h3 className="text-primary">
-                                        {it.flight}
-                                    </h3>
-                                    <span className="flex items-center gap-1">
-                                        <h3 className="font-mono">{it.origin || '----'}</h3>
-                                        <ArrowRightOutlined style={{ fontSize: '2rem' }} className="text-primary" />
-                                        <h3 className="font-mono">{it.destination || '----'}</h3>
-                                    </span>
-                                </span>
-                                <p>{it.aircraftType}</p>
+                            <div className="p-4 text-white">
+                                <p>
+                                    {it.flight} <span className="text-primary">|</span> A380X
+                                </p>
+                                <div className="grid grid-cols-2 gap-12 pb-4">
+                                    <div className="font-mono">
+                                        <h2 className="pb-0">{it.origin || '- - - -'}</h2>
+                                        <small className="break-words">whateverplace is that we need a api to get that info</small>
+                                    </div>
+                                    <div className="font-mono text-right">
+                                        <h2 className="pb-0">{it.destination || '- - - -'}</h2>
+                                        <small className="break-words">whatever other place, same deal as the other side</small>
+                                    </div>
+                                </div>
 
                                 <div className="grid grid-cols-3 py-4 text-center">
                                     <span>
-                                        <h3 className="p-0 font-mono">{it.heading.toFixed(0).padStart(3, '0')}</h3>
-                                        <p>HDG</p>
+                                        <p>G/S</p>
+                                        <h4 className="p-0 font-mono">{numberFormat.format(342)} kts</h4>
                                     </span>
                                     <span>
-                                        <h3 className="p-0 font-mono">{numberFormat.format(it.trueAltitude)}</h3>
-                                        <p>ALT</p>
+                                        <p>HDG</p>
+                                        <h4 className="p-0 font-mono">{it.heading.toFixed(0).padStart(3, '0')}°</h4>
+                                    </span>
+                                    <span>
+                                    <p>ALT</p>
+                                        <h4 className="p-0 font-mono">{numberFormat.format(it.trueAltitude)} ft</h4>
                                     </span>
 
-                                    <span>
-                                        <h3 className="p-0 font-mono">{numberFormat.format(342)}</h3>
-                                        <p>TAS</p>
-                                    </span>
                                 </div>
+
+                                <h5 className="pt-2 pb-0">
+                                    Livery
+                                </h5>
+                                <small>{it.aircraftType}</small>
+
+                                
+
+                                <h5 className="pt-2 pb-0">
+                                    Route
+                                </h5>
+                                <small>we don't have that info yet, so here is my last route: EIDW/10L INKU2Q INKUR DCT BEXET DCT DOGAL DCT 54N020W DCT 55N030W DCT 56N040W DCT 55N050W DCT LOMSI N662C TOPPS DCT ENE PARCH3 KJFK/I04R</small>
                             </div>
                         </Popup>
                     </Marker>
