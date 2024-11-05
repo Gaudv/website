@@ -43,18 +43,32 @@ const LeafletMap: FC<LeafletMapProps> = ({ isFullPageMap, className }) => {
                     <Marker key={it.id} icon={AircraftIcon(it.heading, it.id)} position={[it.location.y, it.location.x]}>
                         <Popup>
                             <div className="p-4 text-white">
-                                <p>
-                                    {it.flight} <span className="text-primary">|</span> A380X
-                                </p>
+                                <div className="grid grid-cols-2 gap-12 pb-4">
+                                    <p>
+                                        {it.flight} <span className="text-primary">|</span> A380X
+                                    </p>
+                                    <p className="flex flex-row-reverse gap-1">
+                                            <p>F-PEGA</p>
+                                            <img className="h-5 w-5 fill-current make-fbw-primary"  src="/svg/plane-tail-thin.svg"/>
+                                    </p>
+                                </div>
                                 <div className="grid grid-cols-2 gap-12 pb-4">
                                     <div className="font-mono">
                                         <h2 className="pb-0">{it.origin || '- - - -'}</h2>
-                                        <small className="break-words">whateverplace is that we need a api to get that info</small>
+                                        <small>whateverplace is that we need a api to get that info</small>
                                     </div>
                                     <div className="font-mono text-right">
                                         <h2 className="pb-0">{it.destination || '- - - -'}</h2>
-                                        <small className="break-words">whatever other place, same deal as the other side</small>
+                                        <small>whatever other place, same deal as the other side</small>
                                     </div>
+                                </div>
+
+                                <div className="flex items-center gap-5">
+                                    <img className="h-10 w-10 fill-current make-fbw-primary"  src="/svg/plane-departure-thin.svg"/>
+                                    <div className="w-full rounded-full h-1 mb-4 bg-dark">
+                                        <div className="h-1 rounded-full bg-primary" style={{width: "45%"}}></div>
+                                    </div>
+                                    <img className="h-10 w-10 fill-current make-fbw-primary"  src="/svg/plane-arrival-thin.svg"/>
                                 </div>
 
                                 <div className="grid grid-cols-3 py-4 text-center">
